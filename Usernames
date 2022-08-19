@@ -1,0 +1,4 @@
+local Whitelisted1 = {  
+	"BetterAtAny", -- Add players here
+	'assdeezballz'
+}
