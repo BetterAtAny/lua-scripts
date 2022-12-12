@@ -1,0 +1,86 @@
+getgenv().NormalCollector = nil 
+getgenv().CollectorSteal = nil 
+getgenv().StealFromOnnett = nil 
+
+function NormalCollection() -- Working 
+    while wait() do 
+        if getgenv().NormalCollector == true then 
+            for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do 
+                if v.ClassName == "Tool" then 
+                    v.ClickEvent:FireServer() 
+                end 
+            end 
+        end 
+    end
+end
+
+function StealFromOnett() 
+    while wait() do 
+        if getgenv().StealFromOnnett == true then 
+            game:GetService("Workspace").NPCs.Onett.Onett["Porcelain Dipper"].ClickEvent:FireServer()
+        end 
+    end
+end
+
+function CollectorSteal() 
+    while wait() do 
+        if getgenv().CollectorSteal == true then 
+            for i,v in pairs(game:GetService("Players"):GetChildren()) do 
+                if v.Name ~= game:GetService("Players").LocalPlayer.Name then 
+                    if v then 
+                        if v.Character then 
+                            if v.Character:FindFirstChildWhichIsA("Tool") then 
+                                if v.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("ClickEvent") then 
+                                    v.Character:FindFirstChildWhichIsA("Tool").ClickEvent:FireServer() 
+                                end 
+                            end 
+                        end 
+                    end 
+                end 
+            end 
+        end 
+    end 
+end 
+    
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Rain-Design/Unnamed/main/Library.lua'))()
+Library.Theme = "Dark"
+local Flags = Library.Flags
+
+local Window = Library:Window({
+    Text = "Ultimate Collector By: @AverageExploitDeveloper (YouTube Handle)" 
+}) 
+
+local Functions = Window:Tab({
+    Text = "Functions" 
+}) 
+
+local functionSection = Functions:Section({
+    Text = "Options" 
+}) 
+
+
+functionSection:Toggle({
+    Text = "Normal", 
+    Callback = function(bool) 
+        getgenv().NormalCollector = bool 
+        NormalCollection() 
+    end 
+})
+
+functionSection:Toggle({
+    Text = "Collector Steal", 
+    Callback = function(bool) 
+        getgenv().CollectorSteal = bool 
+        CollectorSteal() 
+    end 
+})
+
+functionSection:Toggle({
+    Text = "Porc Dipper Free", 
+    Callback = function(bool) 
+        getgenv().StealFromOnnett = bool 
+        StealFromOnett() 
+    end 
+})
+
+Functions:Select() 
